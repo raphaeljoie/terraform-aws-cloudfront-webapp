@@ -51,15 +51,16 @@ variable "is_ipv6_enabled" {
   default = true
 }
 
-variable "domain_name" {
-  type = string
-  default = null
+variable "custom_domain_name" {
+  type        = string
+  default     = null
+  description = "Custom domain name for the distribution. Use `output.domain_name` for the creation of appropriate `CNAME` records"
 }
 
 variable "acm_certificate_arn" {
-  type = string
-  default = null
-  description = "Required when using a domain name"
+  type        = string
+  default     = null
+  description = "ARN to the ACM SSL certificate for the custom domain name. Required when `custom_domain_name` is set"
 }
 
 variable "tags" {

@@ -85,11 +85,11 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | Required when using a domain name | `string` | `null` | no |
+| <a name="input_acm_certificate_arn"></a> [acm\_certificate\_arn](#input\_acm\_certificate\_arn) | ARN to the ACM SSL certificate for the custom domain name. Required when `custom_domain_name` is set | `string` | `null` | no |
 | <a name="input_create_s3_bucket"></a> [create\_s3\_bucket](#input\_create\_s3\_bucket) | Set to false to use an existing S3 bucket. Additional statement available in output | `bool` | `true` | no |
+| <a name="input_custom_domain_name"></a> [custom\_domain\_name](#input\_custom\_domain\_name) | Custom domain name for the distribution. Use `output.domain_name` for the creation of appropriate `CNAME` records | `string` | `null` | no |
 | <a name="input_default_path"></a> [default\_path](#input\_default\_path) | n/a | `object({type: string})` | n/a | yes |
 | <a name="input_description"></a> [description](#input\_description) | Description of the CloudFront distribition | `string` | `null` | no |
-| <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | n/a | `string` | `null` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | n/a | `bool` | `true` | no |
 | <a name="input_is_ipv6_enabled"></a> [is\_ipv6\_enabled](#input\_is\_ipv6\_enabled) | n/a | `bool` | `true` | no |
 | <a name="input_lambda_qualified_arn"></a> [lambda\_qualified\_arn](#input\_lambda\_qualified\_arn) | Qualified ARN (including version number) of the lambda function for non static routes | `string` | n/a | yes |

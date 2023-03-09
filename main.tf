@@ -28,7 +28,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   #  prefix          = "myprefix"
   #}
 
-  aliases = [var.domain_name]
+  aliases = var.custom_domain_name == null ? [] : [var.custom_domain_name]
 
   dynamic "ordered_cache_behavior" {
     for_each = var.paths
@@ -141,9 +141,9 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   tags = var.tags
 
   viewer_certificate {
-    acm_certificate_arn = var.domain_name == null ? null : local.acm_certificate_arn
-    cloudfront_default_certificate = var.domain_name == null ? true : false
-    ssl_support_method = var.domain_name == null ? null : "sni-only"
+    acm_certificate_arn             = var.custom_domain_name == null ? null : local.acm_certificate_arn
+    cloudfront_default_certificate  = var.custom_domain_name == null ? true : false
+    ssl_support_method              = var.custom_domain_name == null ? null : "sni-only"
   }
 }
 

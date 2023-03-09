@@ -2,7 +2,7 @@
 resource "aws_acm_certificate" "certificate" {
   count = 0
 
-  domain_name       = var.domain_name
+  domain_name       = var.custom_domain_name
   validation_method = "DNS"
 
   lifecycle {
@@ -12,7 +12,7 @@ resource "aws_acm_certificate" "certificate" {
 
 data "aws_route53_zone" "this" {
   count = 0
-  name = join(".", slice( split(".", var.domain_name), 1, length(split(".", var.domain_name))))
+  name = join(".", slice( split(".", var.custom_domain_name), 1, length(split(".", var.custom_domain_name))))
   private_zone = true
 }
 
