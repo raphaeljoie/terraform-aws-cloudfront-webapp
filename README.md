@@ -11,12 +11,19 @@
 
 ```tf
 module "webapp" {
-  source = "git::https://github.com/raphaeljoie/terraform-aws-cloudfront-webapp.git?ref=v0.1.0"
+  source = "git::https://github.com/raphaeljoie/terraform-aws-cloudfront-webapp.git?ref=v0.1.1"
 
+  # Dynamic endpoints
   lambda_qualified_arn = aws_lambda_function.lambda.lambda_qualified_arn
   
+  # Static endpoints
   s3_bucket_name = "mywebappstaticassets"
-  create_bucket = true
+  create_bucket = true  # policy available in output for existing buckets
+  
+  # Domain name
+  domain_name = "my.domain.name"
+  # create_certificate = true # Not yet implemented
+  certificate_arn = aws_acm_certificate.certificate.arn
 
   paths = [
     {
@@ -70,6 +77,7 @@ No modules.
 | [aws_s3_bucket_acl.bucket_acl](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_acl) | resource |
 | [aws_s3_bucket_policy.bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
+| [aws_iam_policy_document.bucket_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 | [aws_s3_bucket.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/s3_bucket) | data source |
 
@@ -95,6 +103,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_bucket_policy_json"></a> [bucket\_policy\_json](#output\_bucket\_policy\_json) | n/a |
 | <a name="output_domain_name"></a> [domain\_name](#output\_domain\_name) | n/a |
 | <a name="output_static_bucket"></a> [static\_bucket](#output\_static\_bucket) | n/a |
 <!-- END_TF_DOCS -->
