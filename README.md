@@ -11,7 +11,7 @@
 
 ```tf
 module "webapp" {
-  source = "git::https://github.com/raphaeljoie/terraform-aws-cloudfront-webapp.git?ref=v0.1.1"
+  source = "git::https://github.com/raphaeljoie/terraform-aws-cloudfront-webapp.git?ref=v0.1.3"
 
   # Dynamic endpoints
   lambda_qualified_arn = aws_lambda_function.lambda.lambda_qualified_arn
@@ -89,6 +89,7 @@ No modules.
 | <a name="input_create_s3_bucket"></a> [create\_s3\_bucket](#input\_create\_s3\_bucket) | Set to false to use an existing S3 bucket. Additional statement available in output | `bool` | `true` | no |
 | <a name="input_custom_domain_name"></a> [custom\_domain\_name](#input\_custom\_domain\_name) | Custom domain name for the distribution. Use `output.domain_name` for the creation of appropriate `CNAME` records | `string` | `null` | no |
 | <a name="input_default_path"></a> [default\_path](#input\_default\_path) | n/a | `object({type: string})` | n/a | yes |
+| <a name="input_default_root_object"></a> [default\_root\_object](#input\_default\_root\_object) | Object that you want CloudFront to return (for example, index.html) when an end user requests the root URL | `string` | `null` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description of the CloudFront distribition | `string` | `null` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | n/a | `bool` | `true` | no |
 | <a name="input_is_ipv6_enabled"></a> [is\_ipv6\_enabled](#input\_is\_ipv6\_enabled) | n/a | `bool` | `true` | no |

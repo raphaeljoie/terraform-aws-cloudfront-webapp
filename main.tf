@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled = var.enabled
   is_ipv6_enabled = var.is_ipv6_enabled
   comment = var.description
-  default_root_object = "index.html"
+  default_root_object = var.default_root_object
 
   #logging_config {
   #  include_cookies = false

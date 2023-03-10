@@ -63,6 +63,12 @@ variable "acm_certificate_arn" {
   description = "ARN to the ACM SSL certificate for the custom domain name. Required when `custom_domain_name` is set"
 }
 
+variable "default_root_object" {
+  type        = string
+  default     = null
+  description = "Object that you want CloudFront to return (for example, index.html) when an end user requests the root URL"
+}
+
 variable "tags" {
   type = map(string)
   default = {}
