@@ -34,6 +34,31 @@ data "aws_iam_policy_document" "bucket_policy" {
       variable = "AWS:SourceArn"
     }
   }
+
+  # Make sure Cloud Front returns 404 instead of 403
+  # https://stackoverflow.com/questions/19037664/how-do-i-have-an-s3-bucket-return-404-instead-of-403-for-a-key-that-does-not-e
+  statement {
+    sid = "AllowListingFor404insteadOf403"
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = [
+        "cloudfront.amazonaws.com"
+      ]
+    }
+
+    resources = ["arn:aws:s3:::${local.bucket_name}"]
+
+    actions = [
+      "s3:ListBucket"
+    ]
+    condition {
+      test = "StringEquals"
+      values = ["arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/${aws_cloudfront_distribution.s3_distribution.id}"]
+      variable = "AWS:SourceArn"
+    }
+  }
 }
 
 # TODO output policy

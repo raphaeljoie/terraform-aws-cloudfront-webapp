@@ -112,6 +112,6 @@ No modules.
 * [Restrictions on edge functions](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/edge-functions-restrictions.html)
 
 ## TODO
+- [ ] allow no lambda
 - [ ] Add support for certificate creation + route53 domain validation
-- [ ] documentation of lambda restrictions
-- [ ] 404 instead of 403 when static asset not available
+- [ ] documentation of lambda restrictions (including permissions for logging)
